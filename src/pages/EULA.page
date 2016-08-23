@@ -1,0 +1,29 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false">
+    <html manifest="/apex/cache">
+    <head>
+        <title>EULA</title>
+        <apex:styleSheet value="{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/jquery-1.6.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.js')}"/>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    </head>
+    <body class="ui-mobile-viewport ui-overlay-c"> 
+        <div data-role="page" class="ui-page ui-body-c ui-page-active" id="currentPage">
+            <div data-role="header" data-id="myHeader" data-position="fixed" data-theme="b">
+                <h1>EULA</h1>
+            </div>
+            <div data-role="content" class="ui-content" role="main">
+                <apex:include pageName="EULAiOS" rendered="{! IF($CurrentPage.parameters.iOS == 'true', TRUE, FALSE) }"/>
+                <apex:include pageName="EULAandroid" rendered="{! IF($CurrentPage.parameters.iOS == 'false', TRUE, FALSE) }"/>
+            </div>
+            <div data-role="footer" data-id="eulaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="{!URLFOR($Page.GameList)}?redirect=false" data-role="button" data-theme="e" style="width:60%; margin-left: auto; margin-right: auto">Game List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </body>
+    </html>
+</apex:page>

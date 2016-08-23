@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Enable_Push_Notifications__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, push notifications will be sent for any new game</description>
+        <externalId>false</externalId>
+        <label>Enable Push Notifications</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Key</label>
+        <length>24</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Master_Secret__c</fullName>
+        <externalId>false</externalId>
+        <label>Master Secret</label>
+        <length>24</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Push Notification Setting</label>
+</CustomObject>

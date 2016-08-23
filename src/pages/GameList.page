@@ -1,0 +1,52 @@
+<apex:page controller="GameListController" action="{!redirectForSingleGame}" docType="html-5.0" showHeader="false" standardStylesheets="false">
+<html manifest="/apex/cache">
+    <head>
+        <title><apex:insert name="title">Active Games</apex:insert></title>
+        <apex:styleSheet value="{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.gameListCSS)}"/>
+        <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/jquery-1.6.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.CloudHunterJS)}"/>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" /> 
+    </head> 
+    <body class="ui-mobile-viewport ui-overlay-c"> 
+        <div data-role="page" class="ui-page ui-body-c ui-page-active" id="currentPage">
+            <div data-role="header" data-id="myHeader" data-position="fixed" data-theme="b">
+                <h1><apex:insert name="header">Active Games</apex:insert></h1>
+                <!--a href="{!$Site.Domain}/secur/logout.jsp" data-ajax="false" data-icon="gear" class="ui-btn-right">Logout</a-->
+            </div>
+            <div data-role="content" class="ui-content" role="main">
+                <div style="text-align:center; margin:auto; width:250px">
+                    <apex:repeat value="{!gameList}" var="game">
+                        <div style="margin-top:25px;" >
+                            <a href="#" onclick="selectGame('{!game.id}');" data-theme="e" style="text-decoration: none;">
+                                <img src="{! IF(NOT(ISBLANK(game.Game_Image__c)),game.Game_Image__c,"") }" style="max-width: 200px; max-height:100px" /><br />                                
+                            </a>
+                            <a href="#" onclick="selectGame('{!game.id}');" data-theme="e" style="text-decoration: none; padding-bottom: 40px">
+                                <button data-theme="e">Join {!game.name}</button>
+                            </a>
+                        </div>
+                    </apex:repeat>
+                    <div style="margin-top: 50px">
+                        <a href="{!URLFOR($Page.EULA)}?iOS={!iOSdevice}">End User Licence Agreement</a>
+                    </div>
+                    <apex:outputText rendered="{! NOT(activeGames)}" escape="false" value="<p>There are currently no active CloudHunter games.<br/><br/>Please try again later.</p>" />
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function selectGame(gameId){
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.GameListController.checkPlayerRecord}',
+                    gameId, 
+                    function(playerId, e) {
+                        $j.mobile.changePage("{!URLFOR($Page.Player)}?id="+playerId+"&P="+playerId+"&G="+gameId, {changeHash: true}
+                                );
+                    },
+                    {escape: true}
+                );
+            }
+        </script>                         
+    </body>
+</html>
+</apex:page>

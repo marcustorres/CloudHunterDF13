@@ -1,0 +1,32 @@
+<apex:page showHeader="false" standardStylesheets="false" contentType="text/cache-manifest" cache="false">CACHE MANIFEST
+
+NETWORK:
+*
+
+CACHE:
+
+#js
+{!URLFOR($Resource.jQuery, 'jquery/jquery-1.6.2.min.js')}
+{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.js')}
+
+#css
+{!URLFOR($Resource.jQuery, 'jquery/jquery.mobile-1.1.1.min.css')}
+
+#images
+{!URLFOR($Resource.CloudHunterImages, 'images/profile-on.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/list-on.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/mission-on-cloud.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/cloud3.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/cloud-50opac.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/coins.png')}
+{!URLFOR($Resource.MissionIcons, 'camera-icon-80x80.png')}
+{!URLFOR($Resource.MissionIcons, 'scanner-icon-80x80.png')}
+{!URLFOR($Resource.MissionIcons, 'generic-icon-80x80.png')}
+{!URLFOR($Resource.MissionIcons, 'checkin-icon-80x80.png')}
+{!URLFOR($Resource.MissionIcons, 'sign-icon-80x80.png')}
+{!URLFOR($Resource.CloudHunterImages, 'images/standings-medal-4plus.png')}
+
+#sessionid to force reload cache everytime the app is online:{!GETSESSIONID()}
+#This is done as a work around to a limitation of JS Remoting that causes remoting actions to fail on subsequent app login.
+
+</apex:page>

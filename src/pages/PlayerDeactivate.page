@@ -1,0 +1,17 @@
+<apex:page standardController="Player__c" extensions="PlayerDeactivateExt" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pageBlock id="block">
+            <apex:pageBlockButtons location="bottom" rendered="{!NOT(success)}">
+                <apex:commandButton value="De-activate" action="{!deactivate}" disabled="{!NOT(Player__c.User__r.IsActive)}" rerender="result, block"/>
+            </apex:pageBlockButtons>
+            Are you sure you want to deactivate {!Player__c.user__r.name} ({!Player__c.user__r.username})
+        </apex:pageBlock>
+    </apex:form>
+    <apex:outputPanel id="result">
+        <apex:pageMessages />
+        <apex:outputPanel layout="block" rendered="{!success}" style="margin-left:auto;margin-right:auto;width:20%">            
+            <button type="button" onclick="window.close();">Close</button>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="false">{!Player__c.User__c}</apex:outputPanel>
+</apex:page>
